@@ -37,6 +37,3 @@ Blue.File.write("2")
 ```
 Blue.File.write("3")
 ```
-
-### Notes
-Side effect: when a node is killed the GenServer's PID will change.
