@@ -1,6 +1,10 @@
 ### Supervising Remote PIDs Proof of Concept
 This repo is just a proof of concept of supervising remote PIDs
 
+#### Note
+
+Side effect: When `System.stop` is called in the node holding the remote PID the GenServer will be restarted in the remote node.
+
 #### Start Node A:
 ```
 iex --name a@127.0.0.1 --erl "-config sys.config" -S mix
