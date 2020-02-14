@@ -1,6 +1,10 @@
 ### Supervising Remote PIDs Proof of Concept
 This repo is just a proof of concept of supervising remote PIDs
 
+#### Note
+
+There's a "simpler" version without the Link GenServer in the `simple` branch, but it does not work well with `System.stop` when its run in the node holding the remote PID.
+
 #### Start Node A:
 ```
 iex --name a@127.0.0.1 --erl "-config sys.config" -S mix
