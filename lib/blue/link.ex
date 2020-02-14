@@ -26,19 +26,4 @@ defmodule Blue.Link do
 
     {:noreply, state}
   end
-
-  @impl true
-  def terminate(_reason, state) do
-    Logger.warn("UNLINK############")
-    cleanup(state)
-
-    IO.puts("Going Down: #{inspect(state)}")
-    :normal
-  end
-
-  def cleanup({:local, _pid}), do: nil
-
-  def cleanup({:remote, pid}) do
-    Process.unlink(pid)
-  end
 end
