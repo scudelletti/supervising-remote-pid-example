@@ -4,17 +4,7 @@ defmodule Blue.File do
   require Logger
 
   def start_link(options \\ [name: {:global, __MODULE__}]) do
-    case GenServer.start_link(__MODULE__, :ok, options) do
-      {:ok, pid} ->
-        {:ok, pid}
-
-      {:error, {:already_started, pid}} ->
-        true = Process.link(pid)
-        {:ok, pid}
-
-      error ->
-        error
-    end
+    GenServer.start_link(__MODULE__, :ok, options)
   end
 
   def write(filename) do
@@ -32,8 +22,10 @@ defmodule Blue.File do
     {:reply, :ok, state}
   end
 
-  def handle_info({:EXIT, from, reason}, state) when node(from) != node() do
-    Logger.info("Ignoring exit request since request is from different node")
+  def handle_info({:EXIT, from, _reason}, state) when node(from) != node() do
+    Logger.info(
+      "Ignoring exit request(#{inspect(from)}) since request is from different node(#{node()})"
+    )
 
     {:noreply, state}
   end

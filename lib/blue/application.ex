@@ -8,7 +8,8 @@ defmodule Blue.Application do
   def start(_type, _args) do
     children = [
       # Starts a worker by calling: Blue.Worker.start_link(arg)
-      {Blue.File, [name: {:global, Blue.File}]}
+      # {Blue.File, [name: {:global, Blue.File}]}
+      {Blue.Link, [name: Blue.Link]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
